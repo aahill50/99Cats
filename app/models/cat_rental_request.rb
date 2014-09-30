@@ -17,9 +17,26 @@ class CatRentalRequest < ActiveRecord::Base
     self.status ||= "PENDING"
   end
 
+  def approve!
+    self.status = "APPROVED"
+    self.save!
+  end
+
+  def deny!
+    self.status = "DENIED"
+    self.save
+  end
+
+  def pending?
+    self.status == "PENDING"
+  end
 
 
-  private
+  def overlapping_pending_requests
+    overlapping_requests.where("second_rental_request.status = 'PENDING'")
+  end
+
+private
   def overlapping_requests
     where_condition_1 = "('#{self.start_date}' BETWEEN
          second_rental_request.start_date AND
@@ -41,8 +58,8 @@ class CatRentalRequest < ActiveRecord::Base
 
   def overlapping_approved_requests
     overlapping_requests.where("second_rental_request.status = 'APPROVED'")
-
   end
+
 
   def approved_requests_do_not_overlap
     if self.status == "APPROVED"

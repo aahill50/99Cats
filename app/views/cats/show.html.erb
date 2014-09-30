@@ -24,11 +24,21 @@
     <td> End Date   </td>
     <td> Status     </td>
   </tr>
-  <% @cat.cat_rental_requests.each do |rental| %>
+  <% @cat_rental_requests.each do |rental| %>
   <tr>
     <td> <%= rental.start_date %> </td>
     <td> <%= rental.end_date %> </td>
     <td> <%= rental.status %> </td>
+    <td> <form action=<%= approve_url(rental) %>
+      method="post">
+      <button type="submit"> Approve Request</button>
+    </form>
+    </td>
+    <td> <form action=<%= deny_url(rental) %>
+      method="post">
+      <button type="submit"> Deny Request</button>
+    </form>
+    </td>
   </tr>
   <% end %>
 </table>
