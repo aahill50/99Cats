@@ -9,3 +9,10 @@ Cat.create!(birth_date:"2010-06-01", color:"white", name:"Daisy", sex:"F", descr
 Cat.create!(birth_date:"2010-06-01", color:"brown", name:"Maisy", sex:"F", description:"Female cat")
 Cat.create!(birth_date:"2010-06-01", color:"striped", name:"Crazy", sex:"F", description:"Female cat")
 Cat.create!(birth_date:"2010-06-01", color:"spotted", name:"Lazy", sex:"F", description:"Female cat")
+
+
+CatRentalRequest.create!(cat_id: 1, start_date: "2011-06-01", end_date: "2011-07-01", status: "PENDING")
+CatRentalRequest.create!(cat_id: 1, start_date: "2011-06-10", end_date: "2011-07-10", status: "PENDING")
+CatRentalRequest.create!(cat_id: 1, start_date: "2011-07-02", end_date: "2011-09-10", status: "PENDING")
+CatRentalRequest.create!(cat_id: 1, start_date: "2011-07-03", end_date: "2011-09-09", status: "APPROVED")
+CatRentalRequest.create!(cat_id: 1, start_date: "2011-07-05", end_date: "2011-09-07", status: "APPROVED")

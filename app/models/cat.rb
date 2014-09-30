@@ -19,6 +19,10 @@ class Cat < ActiveRecord::Base
 
 
 
+  has_many :cat_rental_requests,
+    :dependent => :destroy,
+    order: "start_date ASC, end_date ASC"
+
   def age
     # age is in years
     ((Date.today - birth_date).to_f / 365).to_i

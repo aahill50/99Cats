@@ -17,5 +17,22 @@
   </tr>
 </table>
 
+<h2> Rental Dates </h2>
+<table>
+  <tr>
+    <td> Start Date </td>
+    <td> End Date   </td>
+    <td> Status     </td>
+  </tr>
+  <% @cat.cat_rental_requests.each do |rental| %>
+  <tr>
+    <td> <%= rental.start_date %> </td>
+    <td> <%= rental.end_date %> </td>
+    <td> <%= rental.status %> </td>
+  </tr>
+  <% end %>
+</table>
+
+<p> <a href=<%= new_cat_rental_request_url %>>Rent a cat!!!!</a></p>
 <p> <a href=<%= edit_cat_url(@cat) %>> Edit this cat </a></p>
 <p> <a href=<%= cats_url %>> Back to cat list </a></p>
