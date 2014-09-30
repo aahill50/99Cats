@@ -2,6 +2,8 @@ class Cat < ActiveRecord::Base
   COLOR_CHOICES = ["black", "white", "brown", "striped", "spotted"]
   SEX_CHOICES = ["M", "F"]
 
+  validates :name, :birth_date, presence: true
+
   validates :color, presence: true, inclusion: {
     in: COLOR_CHOICES,
     message: "%{value} is not a valid color"
@@ -14,7 +16,7 @@ class Cat < ActiveRecord::Base
     message: "%{value} is not a valid gender"
   }
 
-  validates :name, presence: true
+
 
 
   def age
@@ -25,7 +27,7 @@ class Cat < ActiveRecord::Base
 
   private
   def birth_date_is_not_in_the_future
-    if birth_date > Date.today
+    if birth_date && birth_date > Date.today
       errors[:birth_date] << "Cat can't be from the future!!!"
     end
   end

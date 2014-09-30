@@ -15,6 +15,11 @@
     <td> <%=cat.color%> </td>
     <td> <%=cat.sex%> </td>
     <td> <%=cat.description%> </td>
+    <td> <a href=<%= edit_cat_url(cat) %>>Edit Cat the coooool way</a> </td>
   </tr>
   <% end %>
 </table>
+
+<p>
+  <a href=<%= new_cat_url %>>Make a cat!!! </a>
+</p>
