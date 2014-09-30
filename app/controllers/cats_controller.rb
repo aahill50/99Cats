@@ -9,4 +9,21 @@ class CatsController < ApplicationController
     render :show
   end
 
+  def new
+    @cat = Cat.new
+    render :new
+  end
+
+  def create
+
+  end
+
+  def update
+  end
+
+  def edit
+    @cat = Cat.find(params[:id])
+    render :edit
+  end
+
 end
