@@ -1,0 +1,20 @@
+<h1><%= @cat.name%> </h1>
+
+
+
+<table>
+  <tr>
+     <td> Birth Date </td>
+     <td> Color </td>
+     <td> Gender </td>
+     <td> Description </td>
+  </tr>
+  <tr>
+    <td> <%=@cat.birth_date%> </td>
+    <td> <%=@cat.color%> </td>
+    <td> <%=@cat.sex%> </td>
+    <td> <%=@cat.description%> </td>
+  </tr>
+</table>
+
+<p> <a href=<%= cats_url %>> Back to cat list </a></p>
