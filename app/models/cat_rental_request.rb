@@ -2,10 +2,6 @@ class CatRentalRequest < ActiveRecord::Base
   STATUS_CHOICES = %w{PENDING APPROVED DENIED}
 
   validates :start_date, :end_date, :cat_id, presence: true
-  # validates :status, inclusion: {
- #    in: STATUS_CHOICES,
- #    message: "invalid status!"
- #  }
   validate :approved_requests_do_not_overlap
 
 
@@ -70,18 +66,3 @@ private
   end
 
 end
-
-<<-SQL
-SELECT
-first_rental_request.*
-FROM
-  cat_rental_requests AS first_rental_request
-INNER JOIN
-  cat_rental_requests AS second_rental_request
-ON first_rental_request.cat_id = second_rental_request.cat_id
-WHERE
-  (first_rental_request.id <> second_rental_request.id) AND
-  (first_rental_request.start_date BETWEEN
-    second_rental_request.start_date AND
-    second_rental_request.end_date)
-SQL
