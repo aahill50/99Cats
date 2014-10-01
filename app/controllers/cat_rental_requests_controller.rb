@@ -2,6 +2,7 @@ class CatRentalRequestsController < ApplicationController
   before_action(only: [:approve, :deny]) do
     @curr_cat = CatRentalRequest.find(params[:id]).cat
     unless current_user == @curr_cat.owner
+      flash[:errors] = "Not ALLOWEEDDD!!!!"
       redirect_to cat_url(@curr_cat)
     end
   end

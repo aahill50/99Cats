@@ -1,7 +1,14 @@
 <h1><%= @cat.name%> </h1>
 
 <h2> Owner <%= @cat.try(:owner).try(:user_name) %> </h2>
-
+<% if @cat.try(:owner) == current_user %>
+  <form action=<%= cat_url(@cat) %> method="POST">
+    <input name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+    <input type='hidden' name='_method' value='DELETE'>
+    <input type='submit' value='destroy this cat'>
+<% end %>
 <table>
   <tr>
      <td> Birth Date </td>

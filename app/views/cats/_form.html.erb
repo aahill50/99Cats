@@ -43,7 +43,10 @@
     <textarea rows="10" cols="20" name="cat[description]"
       id="cat_description" ><%= @cat.description %></textarea>
   </p>
-
-  <p><input type="submit" value="Create!!!"></p>
+  <% if @cat.persisted? %>
+    <p><input type="submit" value="Edit!!!"></p>
+  <% else %>
+    <p><input type="submit" value="Create!!!"></p>
+  <% end %>
 
 </form>

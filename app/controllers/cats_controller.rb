@@ -16,6 +16,18 @@ class CatsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @cat = Cat.find(params[:id])
+    fail
+    if @cat.destroy
+      redirect_to cats_url
+    else
+      flash[:errors] = @cat.errors.full_messages
+      render :show
+    end
+
+  end
+
   def new
     @cat = Cat.new
     render :new
