@@ -1,12 +1,17 @@
 class CatRentalRequest < ActiveRecord::Base
   STATUS_CHOICES = %w{PENDING APPROVED DENIED}
 
-  validates :start_date, :end_date, :cat_id, presence: true
+  validates :start_date, :end_date, :cat_id, :user_id, presence: true
   validate :approved_requests_do_not_overlap
 
-
-
   belongs_to :cat
+
+  belongs_to(
+    :requester,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
 
 
   after_initialize do

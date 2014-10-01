@@ -1,5 +1,7 @@
 <h1>These are all the Cats for sale</h1>
-
+<% request.env.each do |env| %>
+<% puts env %>
+<% end %>
 <table>
   <tr>
      <td> Name        </td>
@@ -21,5 +23,6 @@
 </table>
 
 <p> <a href=<%= new_cat_url %>>Make a cat!!! </a> </p>
+<p> <a href=<%= new_cat_rental_request_url %>>Rent a cat!!!!</a></p>
 <p> <a href=<%= new_user_url %>> Sign up!!! </a> </p>
 <p> <a href=<%= new_session_url %>> Sign in!!! </a></p>

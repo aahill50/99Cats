@@ -16,12 +16,22 @@ class Cat < ActiveRecord::Base
     message: "%{value} is not a valid gender"
   }
 
+  validates :user_id, presence: true
 
+  belongs_to(
+    :owner,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
 
-
-  has_many :cat_rental_requests,
+  has_many(
+    :cat_rental_requests,
     :dependent => :destroy,
     order: "start_date ASC, end_date ASC"
+    )
+
+ has_many :requesters, through: :cat_rental_requests, source: :requester
 
   def age
     # age is in years

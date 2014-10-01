@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% if flash.now[:errors] %>
+    <% flash.now[:errors].each do |error| %>
+      <%= error %><br>
+    <% end %>
+  <% end %>
   <title>NinetyNineCats</title>
   <%= csrf_meta_tags %>
 </head>
@@ -14,6 +19,8 @@
 <body>
 
 <%= yield %>
+
+<a href="http://thecatapi.com"><img src="http://thecatapi.com/api/images/get?format=src&type=gif"></a>
 
   <% if current_user %>
   <form action=<%= session_url %> method="POST">

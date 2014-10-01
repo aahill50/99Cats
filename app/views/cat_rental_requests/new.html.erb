@@ -5,13 +5,17 @@
     value="<%= form_authenticity_token %>">
 
   <p>
-    <label for="cat_name">Cat Name</label>
-    <select name="cat_rental_request[cat_id]" id="cat_name">
-      <option value=<%= ""%>>Choose a cat</option>
-      <%Cat.all.each do |cat|%>
-      <option value=<%= cat.id %>><%= cat.name %> </option>
-      <% end %>
+    <label for="cat_name">Cat Name: </label>
+      <% if params[:cat_id] %>
+          <%= Cat.find(params[:cat_id]).name %>
+      <% else %>
+      <select name="cat_rental_request[cat_id]" id="cat_name">
+        <option value=<%= ""%>>Choose a cat</option>
 
+        <%Cat.all.each do |cat|%>
+          <option value=<%= cat.id %>><%= cat.name %> </option>
+        <% end %>
+      <% end %>
     </select>
   </p>
 

@@ -4,7 +4,7 @@
   <input name="authenticity_token"
     type="hidden"
     value="<%= form_authenticity_token %>">
-  <input
+
   <%= "<input type='hidden'
     name='_method'
     value='PATCH'>".html_safe if @cat.persisted? %>

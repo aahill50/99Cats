@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001141933) do
+ActiveRecord::Schema.define(version: 20141001194906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,11 @@ ActiveRecord::Schema.define(version: 20141001141933) do
     t.string   "status",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "cat_rental_requests", ["cat_id"], name: "index_cat_rental_requests_on_cat_id", using: :btree
+  add_index "cat_rental_requests", ["user_id"], name: "index_cat_rental_requests_on_user_id", using: :btree
 
   create_table "cats", force: true do |t|
     t.date     "birth_date"
@@ -35,7 +37,10 @@ ActiveRecord::Schema.define(version: 20141001141933) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "cats", ["user_id"], name: "index_cats_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "user_name",       null: false

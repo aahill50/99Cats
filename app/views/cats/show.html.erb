@@ -1,6 +1,6 @@
 <h1><%= @cat.name%> </h1>
 
-
+<h2> Owner <%= @cat.try(:owner).try(:user_name) %> </h2>
 
 <table>
   <tr>
@@ -20,29 +20,41 @@
 <h2> Rental Dates </h2>
 <table>
   <tr>
+    <td> Requester </td>
     <td> Start Date </td>
     <td> End Date   </td>
     <td> Status     </td>
   </tr>
   <% @cat_rental_requests.each do |rental| %>
   <tr>
+    <td> <%= rental.try(:requester).try(:user_name) %> </td>
     <td> <%= rental.start_date %> </td>
     <td> <%= rental.end_date %> </td>
     <td> <%= rental.status %> </td>
+
+    <% if @cat.owner == current_user %>
     <td> <form action=<%= approve_url(rental) %>
       method="post">
+      <input name="authenticity_token"
+        type="hidden"
+        value="<%= form_authenticity_token %>">
       <button type="submit"> Approve Request</button>
     </form>
     </td>
     <td> <form action=<%= deny_url(rental) %>
       method="post">
+      <input name="authenticity_token"
+        type="hidden"
+        value="<%= form_authenticity_token %>">
       <button type="submit"> Deny Request</button>
     </form>
+    <% end %>
+
     </td>
   </tr>
   <% end %>
 </table>
 
-<p> <a href=<%= new_cat_rental_request_url %>>Rent a cat!!!!</a></p>
+<p> <a href=<%= new_cat_request_url(@cat) %>>Rent a cat!!!!</a></p>
 <p> <a href=<%= edit_cat_url(@cat) %>> Edit this cat </a></p>
 <p> <a href=<%= cats_url %>> Back to cat list </a></p>

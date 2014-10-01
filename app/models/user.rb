@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
   validates :session_token, uniqueness: true
   validates :user_name, uniqueness: { case_sensitive: false }
 
+  has_many :cats, dependent: :destroy
+  has_many :cat_rental_requests
+  has_many :requested_cats, through: :cat_rental_requests, source: :cat
+  has_many :requesters, through: :cats, source: :requesters
+
+
   def self.find_by_credentials(user_name, password)
     user = User.find_by_user_name(user_name)
     # User.find_by(user_name: user_name)
