@@ -4,9 +4,26 @@
   <title>NinetyNineCats</title>
   <%= csrf_meta_tags %>
 </head>
+<h2>
+  <% if current_user %>
+  <%= current_user.user_name%>
+  <% else %>
+  Please <a href= <%= new_session_url %>>Log in</a>
+  <%end%>
+</h2>
 <body>
 
 <%= yield %>
+
+  <% if current_user %>
+  <form action=<%= session_url %> method="POST">
+    <input name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log Out">
+  </form>
+  <%end%>
 
 </body>
 </html>
